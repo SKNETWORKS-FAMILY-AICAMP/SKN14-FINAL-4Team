@@ -164,6 +164,30 @@ LLM/RAG 기반으로 홍진경 페르소나가 **친환경 패션 브랜드의 �
 
 <br/>
 
+
+
+## 🔧 기술스택
+| **Category**         | **Tech Stack**                                                                                                                                                                                                                                                                                     |
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Frontend**         | <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/><br><img src="https://img.shields.io/badge/CSS-blue?style=for-the-badge&logo=css&logoColor=white"/><br><img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"/> |
+| **Backend Framework**| <img src="https://img.shields.io/badge/django-FF7300?style=for-the-badge&logo=django&logoColor=white"/><br><img src="https://img.shields.io/badge/langchain-2296f3?style=for-the-badge&logo=langchain&logoColor=white"/>                                                                          |
+| **Server / Proxy**   | <img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white"/>                                                                                                                                                                                             |
+| **Database**         | <img src="https://img.shields.io/badge/MYSQL-003B57?style=for-the-badge&logo=mysql&logoColor=white"/>                                                                                                                                                                                           |
+| **Container / DevOps**| <img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>                                                                                                                                                                                        |
+| **LLM Model**        | <img src="https://img.shields.io/badge/OpenAI-GPT--4.0--mini-10a37f?style=for-the-badge&logo=openai&logoColor=white"/>                                                                                                                                    |
+| **Vector DB**        | <img src="https://img.shields.io/badge/Pinecone-27AE60?style=for-the-badge&logo=pinecone&logoColor=white"/>                                                                                                                                                                                      |
+| **Collaboration**    | <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/><br><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/><br><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"/><br><img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"/> |
+| **IDE / Editor**     | <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"/><br><img src="https://img.shields.io/badge/PyCharm-000000?style=for-the-badge&logo=pycharm&logoColor=white"/>                                                                    |
+| **Infrastructure** | <img src="https://img.shields.io/badge/-Amazon AWS-232F3E?style=flat&logo=amazonaws&logoColor=white"/> |
+
+
+
+## 🎛️ 시스템 아키텍쳐
+![](readme_img/architecture.svg)
+
+## 🖼️ ERD
+![](readme_img/ERD.png)
+
 ## 🎯 프로젝트 목표 및 범위
 
 ### 📌 프로젝트 목표
