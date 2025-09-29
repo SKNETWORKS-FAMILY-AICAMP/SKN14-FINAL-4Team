@@ -1,0 +1,169 @@
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.sign-up .green-board {
+  width: 100%;
+  max-width: 373px;
+  height: auto;
+  min-height: 500px;
+  margin-top: 20px;
+  background-color: #0a6f601a;
+  border-radius: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.sign-up .green-board .overlap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 319px;
+  margin-bottom: 40px;
+}
+.sign-up .green-board .overlap .screenshot {
+  width: 100%;
+  max-width: 319px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+.sign-up .green-board .overlap .text-wrapper-2 {
+  width: 100%;
+  font-weight: 400;
+  font-size: 16px;
+  color: #667085b2;
+  text-align: center;
+  line-height: 20px;
+}
+
+.sign-up .green-board .btn-area {
+  position: relative;
+  width: 100%;
+  max-width: 353px;
+}
+.sign-up .green-board .btn-area .button-with-icon {
+  display:flex;
+  flex-wrap: wrap;
+  align-content: center;
+  background-color: #ffffff;
+  border-radius: 28px;
+  border: 1px solid;
+  border-color: #d8dadc;
+  width: 353px;
+  height:54px;
+  margin-top:10px;
+}
+.sign-up .green-board .btn-area .button-with-icon .group {
+  display:flex;
+  align-content: center;
+}
+.sign-up .green-board .btn-area .button-with-icon img {
+  width:20px;
+  height:20px;
+  margin-left:17px;
+}
+.sign-up .green-board .btn-area .button-with-icon span {
+  margin-left:20px;
+  font-family: "Inter-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #0b1220;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.sign-up .already-have {
+  position:relative;
+  top:40px;
+}
+.sign-up .already-have span {
+  color: #000000b2;
+}
+
+.sign-up .text-wrapper-4 a {
+  font-family: "Inter-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #0b1220;
+  text-decoration: underline;
+}
+
+/* 모바일 (기본) */
+@media (max-width: 767px) {
+  .sign-up {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  .sign-up .green-board {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: 500px;
+    margin-top: 0;
+    padding: 20px;
+  }
+  
+  .sign-up .green-board .overlap {
+    max-width: none;
+    margin-bottom: 30px;
+  }
+  
+  .sign-up .green-board .overlap .screenshot {
+    max-width: none;
+  }
+  
+  .sign-up .green-board .overlap .text-wrapper-2 {
+    font-size: 14px;
+  }
+  
+  .sign-up .green-board .btn-area {
+    max-width: none;
+  }
+  
+  .sign-up .green-board .btn-area .button-with-icon {
+    width: 100%;
+    max-width: none;
+    margin-top: 15px;
+  }
+  
+  .sign-up .already-have {
+    position: relative;
+    top: 20px;
+    text-align: center;
+    padding: 0;
+  }
+}
+
+/* 태블릿 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sign-up .green-board {
+    max-width: 400px;
+    min-height: 600px;
+  }
+}
+
+/* 데스크톱 */
+@media (min-width: 1024px) {
+  .sign-up .green-board {
+    max-width: 420px;
+    min-height: 650px;
+  }
+}
