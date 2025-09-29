@@ -4,6 +4,24 @@
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 > [SKN14-Final-4Team-AI(Backend Git Repo)](https://github.com/skn-ai14-250409/SKN14-Final-4Team-AI)
 
+------------------------------------------------------------------------------------------------------------------------
+
+# 할당받은 주제
+LLM 활용 인공지능 인플루언서 만들기
+
+
+# 초기 기획 방향
+1. 특정 인플루언서의 영상/말투 데이터를 수집하고 모델에 학습시킨 후, **사용자와 영상통화처럼 실시간 대화(또는 채팅)하는 App** 구상.  
+   => 주어진 시간/인력/비용을 벗어나고, 난이도가 높다는 피드백에 따라 <span style='color: red;'>폐기</span>
+2. 특정 **인플루언서들의 음성파일로 모델을 Fine-Tuning** 하고, 그들과 대화(또는 채팅)할 때 **인플루언서의 목소리로 대화를 나눌 수 있는 채팅 App** 구상.  
+   => 이전 기수에서 진행되었던 프로젝트와 너무 많이 겹치고, 아이디어 구상 자체가 너무 단순하다는 내부 의견에 따라 <span style='color: red;'>폐기</span>
+3. **친환경 제품들을 판매하는 브랜드를 알릴 수 있는 정보전달용 사이트**를 구축하고, 해당 사이트에서 **인공지능 인플루언서가 TTS 로 정보를 전달하는 Webapp** 구상.  
+   => '친환경 제품' 이라는 범주가 너무 크고, 프로젝트의 주제와 방향을 알기 어렵다는 피드백에 따라 <span style='color: red;'>기획 수정</span>
+4. <span style='color: green; font-size:bold; font-size:16px;'>최종 주제</span>  
+   => '친환경 제품' 의 범위를 '재활용 의류제품' 으로 한정하여, `'재활용 제품' 에 대한 검색 및 스타일링 추천, 친환경 정보를 전달하는 서비스`를 구상.  
+   => 이 때 `인공지능 인플루언서의 TTS 를 도입`하여, 사용자로 하여금 `소통/교감/신뢰도/흥미를 느낄 수 있도록 유도`한다. 
+
+------------------------------------------------------------------------------------------------------------------------
 
 # 🔎 문제 정의
 - 온난화, 각국의 이상기후 등 `환경 문제에 대한 위기감 증가`
@@ -17,15 +35,15 @@
 
 
 # ䷒ 접근방식
-- 소비자가 `패션 선택과 동시에 친환경적 가치 실현 가능`
+- 소비자가 `패션 선택과 동시에 친환경적 가치를 실현할 수 있도록 유도한다.`
   - 비슷한 디자인과 스타일의 기존제품들에 비해 `가성비가 높고 비용도 더 저렴한 Recycling product 들을 쉽게 검색`해볼 수 있다.
   - Recycling product 를 사용함으로써 환경이슈에 어느정도로 기여할 수 있는지를 함께 제공함으로써 `환경이슈에 대한 사용자들의 관심도`를 높인다.
-- 인공지능 인플루언서의 톤앤매너로 `개인 맞춤형 추천+가이드를 간편 대화형으로 제공`
+- 인공지능 인플루언서의 톤앤매너로 `개인 맞춤형 추천+가이드를 간편 대화형으로 제공한다.`
   - Recycling product 를 제작하는 브랜드의 제품들 정보를 수집하고, 그 `제품들이 환경에 어떻게 기여하는지 정보를 함께 전달`하는 서비스.
 
 
 # 👤 활용대상 및 기회
-- **Shopper Aspect**
+- **Customer Aspect**
   - 기존에 환경이슈에 관심이 많았던 사람
   - 환경이슈에 무심하거나 그러한 정보가 있음을 알지 못했던 사람
   - 비슷한 디자인에 더 저렴한 제품을 찾는 사람
@@ -40,6 +58,18 @@
   - ‘친환경 국가’의 브랜드 아래, 환경기준이 높은 국가들의 무역 장벽 완화 가능성
 
 
+# 인공지능 인플루언서 적용 방향
+사용자가 선택한 `인플루언서가 그들의 말투와 어조, 목소리로 사용자에게 정보를 전달`함으로써  
+사용자로 하여금 `소통/교감으로 인한 흥미를 유도`하고,  
+전달하는 `정보에 대한 신뢰감 조성` 등에 인공지능 인플루언서를 활용한다.
+
+
+# Use-case ( 에이전트 흐름도 ) 
+
+
+
+
+
 # 📅 프로젝트 진행일정
 ┌─ **2025.8.11** : 주제 회의 및 기획  
 ├  
@@ -48,6 +78,10 @@
 ├─ **2025.8.21** : 주제 변경 및 기획문서들 수정  
 ├    
 ├─ **2025.8.26** : 중간 발표  
+├    
+├─ **2025.8.27** : UI 작업  
+├    
+├─ **2025.9.04** : DB 연동  
 ├    
 └─ **2025.10.2** ( 최종발표 )
 
@@ -95,14 +129,17 @@
 ![](images/new_erd.png)
 
 
-# 📸 Project Screenshots
-<img src="images/screenshot01.jpg" alt="project-screenshot" width="200" height="340"/>
-<img src="images/screenshot02.jpg" alt="project-screenshot" width="200" height="340"/>
-<img src="images/screenshot03.jpg" alt="project-screenshot" width="200" height="340"/>
-<img src="images/screenshot04.jpg" alt="project-screenshot" width="200" height="340"/>
-<img src="images/screenshot05.jpg" alt="project-screenshot" width="200" height="340"/>
-<img src="images/screenshot06.jpg" alt="project-screenshot" width="200" height="340"/>
-<img src="images/screenshot07.jpg" alt="project-screenshot" width="200" height="340"/>
+# 📸 Project Main pages Screenshots
+<div>
+  <img src="images/screenshot01.jpg" alt="project-screenshot" width="200" height="340"/>
+  <img src="images/screenshot02.jpg" alt="project-screenshot" width="200" height="340"/>
+  <img src="images/screenshot03.jpg" alt="project-screenshot" width="200" height="340"/>
+  <img src="images/screenshot04.jpg" alt="project-screenshot" width="200" height="340"/>
+  <img src="images/screenshot05.jpg" alt="project-screenshot" width="200" height="340"/>
+  <img src="images/screenshot06.jpg" alt="project-screenshot" width="200" height="340"/>
+  <img src="images/screenshot07.jpg" alt="project-screenshot" width="200" height="340"/>
+</div>
+
 
 
 # 🚀 Demo
@@ -116,9 +153,36 @@
 
 
 # 후기
-| 참여자 | 소감                                                                               |
-|--------|----------------------------------------------------------------------------------|
-| 조성렬 |                                                                                  |
-| 공지환 |                                                                                  |
-| 윤이서 |                                                                                  |
-| 송지훈 | Django, FastAPI, OpenAI, VectorDB 를 종합적으로 사용한 웹서비스를 A to Z 로 만들어봤다는 점에서 재미있었습니다. |
+<table>
+  <thead>
+    <tr>
+      <th>참여자</th>
+      <th>소감</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>조성렬</th>
+      <td>6개월동안 배웠던 내용을 종합하여 프로젝트에 적용해본게 좋은 경험이였습니다. 시간이 3주만 더있었다면 완성도가 더 높지않았을까하는 아쉬움도 남습니다.</td>
+    </tr>
+    <tr>
+      <th>공지환</th>
+      <td>파인튜닝, 음성 합성 모델링, 말투 RAG 등 여러 AI 엔지니어링 작업을 수행하면서 개발과 협업 경험을 쌓을 수 있었습니다. runpod serverless의 파이프라인을 직접 구축해보며 새로운 방식을 도전하였고, 이 과정에서 협업과 소통의 중요성을 배웠습니다.</td>
+    </tr>
+    <tr>
+      <th>윤이서</th>
+      <td>이번 프로젝트를 발판 삼아, AI 생태계에 대해 더 많이 배우고 공부해야겠다는 생각이 들었습니다. 단순한 사용자가 아닌 생산자로서 직접 AI 서비스를 만들어 본 뜻깊은 경험이었습니다!</td>
+    </tr>
+    <tr>
+      <th>송지훈</th>
+      <td>
+        <ul>
+          <li>Django, FastAPI, OpenAI, VectorDB 를 종합적으로 사용한 웹서비스를 A to Z 로 만들어봤다는 점에서 재미있었습니다.</li>
+          <li>개별과제부터 프로젝트에 이르기까지 LLM 프롬프팅의 중요성과 어려움을 알수있었습니다.</li>
+          <li>다른 팀들의 작업을 보면서 좀더 유연하게 모델을 활용하는 방법도 배울수 있었습니다.</li>
+          <li>LLM 을 활용한 서비스를 계획한다면, LLM 의 응답속도 및 응답방식에 대한 고민도 중요하다는 것을 느꼈습니다.</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
