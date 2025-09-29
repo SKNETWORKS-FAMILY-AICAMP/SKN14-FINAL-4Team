@@ -1,0 +1,98 @@
+{% extends "layout/base_content_only.html" %}
+
+{% load static %}
+
+{% block title %}LoopLabel | Create Account - Sign Up{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/userapp/signup.css" %}">
+{% endblock style %}
+
+
+{% block content %}
+    <main class="sign-up">
+        <div class="div">
+            <div class="screenshot">
+                <img src="{% static "images/logo.png" %}" alt="LoopLabel Logo"/>
+            </div>
+            <h1 class="text-wrapper">Create account</h1>
+            <form action="{% url "userapp:signup" %}" method="post" class="signup-form needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="inputbox mb-3">
+                    <label class="title">Email</label>
+                    <input type="email" class="form-control" name="email" placeholder="example@domain.com" value="{{ form.email.value|default:"" }}" required>
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="inputbox mb-3">
+                    <label class="title">First name</label>
+                    <input type="text" class="form-control" name="first_name" placeholder="James" value="{{ form.first_name.value|default:"" }}">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="inputbox mb-3">
+                    <label class="title">Last name</label>
+                    <input type="text" class="form-control" name="last_name" placeholder="Bond" value="{{ form.last_name.value|default:"" }}">
+                    <div class="invalid-feedback"></div>
+                </div>
+                <div class="inputbox mb-3">
+                    <label class="title">Password</label>
+                    <input type="password" class="form-control" name="password1" required>
+                    <ul class="list-group" id="passwordRules">
+                        <li class="list-group-item" id="rule-lower">❓ Including lower case alphabet</li>
+                        <li class="list-group-item" id="rule-upper">❓ Including upper case alphabet</li>
+                        <li class="list-group-item" id="rule-number">❓ Including digits</li>
+                        <li class="list-group-item" id="rule-special">❓ Including special character among ! @ # $ % ^ & * ( ) </li>
+                        <li class="list-group-item" id="rule-length">❓ Over 8 letters</li>
+                    </ul>
+                </div>
+                <div class="inputbox mb-3">
+                    <input type="password" class="form-control" name="password2" placeholder="Password confirm" required>
+                    <div class="invalid-feedback">The password you entered is different.</div>
+                </div>
+                <button type="submit" class="button-primary">Register</button>
+            </form>
+            <div class="or-register-with">
+                <hr><span>Or Register with</span><hr>
+            </div>
+            <button type="button" class="button-with-centered sns-login-btn" aria-label="Sign up with Google" data-sns="google">
+                <img class="icon" src="{% static "images/signup/google_24px.svg" %}" alt="Google"/>
+                Google
+            </button>
+            <p class="already-have-an">
+                Already have an account? <a href="{% url "userapp:login" %}" class="text-wrapper-3">Log in</a>
+            </p>
+        </div>
+    </main>
+{% endblock %}
+
+{% block script %}
+    <script>
+        {#const KAKAO_CLIENT_ID  = "{{ KAKAO_CLIENT_ID }}";#}
+        {#const NAVER_CLIENT_ID  = "{{ NAVER_CLIENT_ID }}";#}
+        const GOOGLE_CLIENT_ID = "{{ GOOGLE_CLIENT_ID }}";
+    </script>
+    <script src="{% static "js/userapp/login.js" %}"></script>
+
+    <script src="{% static 'js/signup.js' %}"></script>
+    <script>
+        init_email_dup("{% url "userapp:check_email_dup" %}");
+        init_passwd_rule_checker();
+        init_name_checker(document.getElementsByName("first_name")[0]);
+        init_name_checker(document.getElementsByName("last_name")[0]);
+    </script>
+    <script>
+    {% if form.errors.items %}
+        let $ele, $msg;
+    {% endif %}
+{% for field, errors in form.errors.items %}
+    {% if field == "email" or field == "password2" %}
+        $ele = document.querySelector("[name={{ field }}]");
+        $msg = $ele.nextElementSibling;
+        $msg.innerHTML = "&middot; {{ errors.0 }}";
+        _valid($ele, false);
+    {% elif field == "password1" %}
+        $ele = document.querySelector("[name={{ field }}]");
+        $ele.dispatchEvent(new Event('input', { bubbles: true }));
+    {% endif %}
+{% endfor %}
+    </script>
+{% endblock script %}

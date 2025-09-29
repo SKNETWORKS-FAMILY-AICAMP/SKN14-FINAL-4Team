@@ -1,0 +1,65 @@
+{% extends "layout/base_content_only.html" %}
+
+{% load static %}
+
+{% block title %}LoopLabel | Login{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static "css/userapp/login.css" %}">
+{% endblock style %}
+
+
+{% block content %}
+    <main class="sign-up">
+        <div class="div">
+            <div class="screenshot">
+                <img src="{% static "images/logo.png" %}" alt="LoopLabel Logo"/>
+            </div>
+            <h1 class="text-wrapper">Hi, Welcome!👋</h1>
+            <form action="{% url "userapp:login" %}" method="post" class="signup-form needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="inputbox mb-3">
+                    <label class="title">Email</label>
+                    <input type="email" class="form-control" name="username" placeholder="example@domain.com" value="{{ form.username.value|default:"" }}" required>
+                </div>
+                <div class="inputbox mb-3">
+                    <label class="title">Password</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+                <div class="inputbox mb-3" style="flex-direction:row;">
+                    <label>
+                        <input class="form-check-input mt-0" type="checkbox" value="Y" aria-label="Checkbox for following text input" required>
+                        <span class="p">Remember me</span>
+                    </label>
+                </div>
+                <button type="submit" class="button-primary">Log in</button>
+            </form>
+            <div class="or-register-with">
+                <hr><span>Or Register with</span><hr>
+            </div>
+            <button type="button" class="button-with-centered sns-login-btn" aria-label="Sign up with Google" data-sns="google">
+                <img class="icon" src="{% static "images/signup/google_24px.svg" %}" alt="Google"/>
+                Google
+            </button>
+            <p class="already-have-an">
+                Don't have an account? <a href="{% url "userapp:signup" %}" class="text-wrapper-3">Sign up</a>
+            </p>
+        </div>
+    </main>
+{% endblock %}
+
+{% block script %}
+    <script>
+        {#const KAKAO_CLIENT_ID  = "{{ KAKAO_CLIENT_ID }}";#}
+        {#const NAVER_CLIENT_ID  = "{{ NAVER_CLIENT_ID }}";#}
+        const GOOGLE_CLIENT_ID = "{{ GOOGLE_CLIENT_ID }}";
+    </script>
+    <script src="{% static "js/userapp/login.js" %}"></script>
+    <script>
+        {% for field, errors in form.errors.items %}
+            {% if field == "__all__" %}
+                alert("{{ errors.0 }}");
+            {% endif %}
+        {% endfor %}
+    </script>
+{% endblock script %}
