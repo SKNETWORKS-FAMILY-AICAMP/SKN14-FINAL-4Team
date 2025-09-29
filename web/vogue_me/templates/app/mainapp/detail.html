@@ -1,0 +1,469 @@
+{% extends "layout/base_content_only.html" %}
+
+{% load static %}
+{%  load humanize %}
+
+{% block title %}LoopLabel | {{ look.look_style }}{% endblock title %}
+
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/mainapp/detail.css' %}">
+{% endblock style %}
+
+
+{% block content %}
+    <div class="container">
+        <!-- Header with product image -->
+        <div class="header">
+            <img src="{{ look.look_img_url }}" alt="{{ look.look_style }}" class="product-image">
+            <div class="nav-buttons">
+                <button class="back-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <button class="heart-btn {{ like|yesno:"filled," }}" aria-pressed="{{ like|yesno:"true,false" }}">
+                <svg class="heart-fill" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                <svg class="heart-outline" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                </button>
+        </div>
+
+        <!-- Product Information -->
+        <div class="product-info">
+            <h1 class="product-title">{{ look.look_style }}</h1>
+            <p class="product-description">{{ look.look_desc }}</p>
+
+            <!-- Environmental Impact -->
+            <div class="env-section">
+                <h2 class="env-title">환경 효과</h2>
+                <div class="env-items">
+                    <div class="env-item">
+                        <div class="env-icon water-icon">💧</div>
+                        <div class="env-text">
+                            <div class="env-main">물 {{ water_saved_l }}L 절약</div>
+                        </div>
+                    </div>
+                    <div class="env-item">
+                        <div class="env-icon co2-icon">🌱</div>
+                        <div class="env-text">
+                            <div class="env-main">CO<sub>2</sub> {{ co2_saved_kg }}kg 감소</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Items -->
+            <div class="related-section">
+                <h2 class="related-title">리사이클 아이템</h2>
+                <div class="related-items">
+                    {% for product in products %}
+                    <div class="related-item">
+                            <div class="related-image" style="background: url('{{ product.image_url }}') center/cover;"></div>
+                        <div class="related-info">
+                                <div class="related-name">{{ product.name }}</div>
+                                <div class="related-price">
+                                    {% if product.currency == '₩' %}
+                                        {{ product.currency }}{{ product.price|floatformat:0|intcomma }}
+                                    {% else %}
+                                        {{ product.currency }}{{ product.price }}
+                                    {% endif %}
+                                </div>
+                        </div>
+                        <div class="related-actions">
+{#                            <button class="more-options">#}
+{#                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">#}
+{#                                    <circle cx="12" cy="12" r="1"/>#}
+{#                                    <circle cx="19" cy="12" r="1"/>#}
+{#                                    <circle cx="5" cy="12" r="1"/>#}
+{#                                </svg>#}
+{#                            </button>#}
+                                <a href="{{ product.url }}" target="_blank" class="shop-btn">웹사이트</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item menu bottom sheet overlay -->
+    <div class="overlay" id="itemMenuOverlay" role="dialog" aria-modal="true" aria-labelledby="itemMenuTitle">
+        <div class="item-menu">
+            <div class="handle"></div>
+            <div class="title" id="itemMenuTitle">Modern black pants</div>
+            <div class="list">
+                <button type="button">리사이클 인증서 보기
+                    <span>✅</span>
+                </button>
+                <button type="button">브랜드 ESG 보고서 보기
+                    <span>📄</span>
+                </button>
+                <button type="button">추천 근거 보기
+                    <span>❓</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Textile Exchange Modal -->
+    <div class="modal-overlay" id="textileModal" onclick="closeTextileModal(event)">
+        <div class="modal-container" onclick="event.stopPropagation()">
+            <!-- 모달 헤더 -->
+            <div class="modal-header">
+                <button class="close-button" onclick="closeTextileModal()">×</button>
+                <h2 class="modal-title">Textile Exchange</h2>
+                <p class="modal-subtitle">지속가능한 섬유 인증서</p>
+                <div class="certification-badge">
+                    <div class="status-dot"></div>
+                    인증 유효
+                </div>
+            </div>
+
+            <!-- 모달 콘텐츠 -->
+            <div class="modal-content">
+                <!-- 회사 정보 -->
+                <div class="company-info">
+                    <div class="company-header">
+                        <div class="company-logo">patagonia</div>
+                        <div class="company-details">
+                            <h3>Patagonia Inc.</h3>
+                            <div class="company-dates">
+                                발급일: 2024-11-22
+                            </div>
+                        </div>
+                    </div>
+                    <div class="validity-info">
+                        <div class="validity-title">유효 기간</div>
+                        <div class="validity-date">2025년 11월 22일까지</div>
+                    </div>
+                </div>
+
+                <!-- 시설 섹션 -->
+                <div class="section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            🏭 시설 현황
+                        </h3>
+                        <div class="section-count">3개</div>
+                    </div>
+
+                    <div class="facility-item">
+                        <div class="facility-left">
+                            <div class="facility-icon retail"></div>
+                            <div class="facility-info">
+                                <h4>Retail Sales</h4>
+                                <div class="code">PRO025 • 소매/판매</div>
+                            </div>
+                        </div>
+                        <div class="facility-badges">
+                            <span class="badge grs">GRS</span>
+                            <span class="badge rcs">RCS</span>
+                        </div>
+                    </div>
+
+                    <div class="facility-item">
+                        <div class="facility-left">
+                            <div class="facility-icon trading"></div>
+                            <div class="facility-info">
+                                <h4>Trading</h4>
+                                <div class="code">PRO030 • 거래/유통</div>
+                            </div>
+                        </div>
+                        <div class="facility-badges">
+                            <span class="badge grs">GRS</span>
+                            <span class="badge rcs">RCS</span>
+                        </div>
+                    </div>
+
+                    <div class="facility-item">
+                        <div class="facility-left">
+                            <div class="facility-icon brand"></div>
+                            <div class="facility-info">
+                                <h4>Brand Activity</h4>
+                                <div class="code">PRO035 • 브랜드 활동</div>
+                            </div>
+                        </div>
+                        <div class="facility-badges">
+                            <span class="badge grs">GRS</span>
+                            <span class="badge rcs">RCS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 소재 섹션 -->
+                <div class="section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            🧵 재활용 소재
+                        </h3>
+                        <div class="section-count">3개</div>
+                    </div>
+
+                    <div class="material-item">
+                        <div class="material-progress">
+                            <div class="progress-circle progress-100">100%</div>
+                        </div>
+                        <div class="material-info">
+                            <h4>Recycled Nylon</h4>
+                            <div class="code">RM085 • 재활용 나일론</div>
+                        </div>
+                    </div>
+
+                    <div class="material-item">
+                        <div class="material-progress">
+                            <div class="progress-circle progress-70">70%</div>
+                        </div>
+                        <div class="material-info">
+                            <h4>Recycled Polyester</h4>
+                            <div class="code">RM089 • 재활용 폴리에스터</div>
+                        </div>
+                    </div>
+                    
+                    <div class="material-item">
+                        <div class="material-progress">
+                            <div class="progress-circle progress-50">50%</div>
+                        </div>
+                        <div class="material-info">
+                            <h4>Recycled Cotton</h4>
+                            <div class="code">RM023 • 재활용 면</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patagonia Inc. Modal -->
+    <div class="patagonia-modal" id="patagoniaModal" onclick="closePatagoniaModal(event)">
+        <div class="patagonia-container" onclick="event.stopPropagation()">
+            <div class="patagonia-header">
+                <div class="patagonia-close-btn" onclick="closePatagoniaModal()">✕</div>
+
+                <div class="patagonia-company-name">Patagonia Inc.</div>
+                <div class="patagonia-status-badge">인증 유효</div>
+            </div>
+
+            <div class="patagonia-content">
+                <div class="patagonia-date-info">
+                    <div class="patagonia-date-row">
+                        <span>발급일:</span>
+                        <span>2024-11-22</span>
+                    </div>
+                    <div class="patagonia-date-row">
+                        <span>만료일:</span>
+                        <span>2025-11-22</span>
+                    </div>
+                </div>
+
+                <div class="patagonia-section-title">사업 현황</div>
+
+                <div class="patagonia-business-list">
+                    <div class="patagonia-business-item">
+                        <div class="patagonia-business-info">
+                            <div class="patagonia-business-code">PRO025 • 소매/판매</div>
+                            <div class="patagonia-business-name">Retail Sales</div>
+                        </div>
+                        <div class="patagonia-status-buttons">
+                            <button class="patagonia-status-btn grs">GRS</button>
+                            <button class="patagonia-status-btn rcs">RCS</button>
+                        </div>
+                    </div>
+
+                    <div class="patagonia-business-item">
+                        <div class="patagonia-business-info">
+                            <div class="patagonia-business-code">PRO030 • 거래/유통</div>
+                            <div class="patagonia-business-name">Trading</div>
+                        </div>
+                        <div class="patagonia-status-buttons">
+                            <button class="patagonia-status-btn grs">GRS</button>
+                            <button class="patagonia-status-btn rcs">RCS</button>
+                        </div>
+                    </div>
+
+                    <div class="patagonia-business-item">
+                        <div class="patagonia-business-info">
+                            <div class="patagonia-business-code">PRO035 • 브랜드 활동</div>
+                            <div class="patagonia-business-name">Brand</div>
+                        </div>
+                        <div class="patagonia-status-buttons">
+                            <button class="patagonia-status-btn grs">GRS</button>
+                            <button class="patagonia-status-btn rcs">RCS</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="patagonia-progress-section">
+                    <div class="patagonia-section-title">재활용 소재</div>
+
+                    <div class="patagonia-progress-grid">
+                        <div class="patagonia-progress-item">
+                            <div class="patagonia-progress-circle">
+                                <div class="patagonia-circle-bg"></div>
+                                <div class="patagonia-circle-progress" style="--progress: 360deg;">100%</div>
+                            </div>
+                            <div class="patagonia-progress-label">재활용 나일론</div>
+                            <div class="patagonia-progress-subtitle">Overcoats, jackets, vests</div>
+                        </div>
+
+                        <div class="patagonia-progress-item">
+                            <div class="patagonia-progress-circle">
+                                <div class="patagonia-circle-bg"></div>
+                                <div class="patagonia-circle-progress" style="--progress: 360deg;">100%</div>
+                            </div>
+                            <div class="patagonia-progress-label">재활용 폴리에스터</div>
+                            <div class="patagonia-progress-subtitle">Overcoats, jackets, vests</div>
+                        </div>
+
+                        <div class="patagonia-progress-item yellow">
+                            <div class="patagonia-progress-circle">
+                                <div class="patagonia-circle-bg"></div>
+                                <div class="patagonia-circle-progress" style="--progress: 198deg;">55%</div>
+                            </div>
+                            <div class="patagonia-progress-label">재활용 폴리에스터</div>
+                            <div class="patagonia-progress-subtitle">Overcoats, jackets, vests</div>
+                        </div>
+
+                        <div class="patagonia-progress-item yellow">
+                            <div class="patagonia-progress-circle">
+                                <div class="patagonia-circle-bg"></div>
+                                <div class="patagonia-circle-progress" style="--progress: 180deg;">50%</div>
+                            </div>
+                            <div class="patagonia-progress-label">재활용 폴리에스터</div>
+                            <div class="patagonia-progress-subtitle">Overcoats, jackets, vests</div>
+                        </div>
+                    </div>
+
+                    <div class="patagonia-progress-item yellow full">
+                        <div class="patagonia-progress-circle">
+                            <div class="patagonia-circle-bg"></div>
+                            <div class="patagonia-circle-progress" style="--progress: 180deg;">50%</div>
+                        </div>
+                        <div class="patagonia-progress-label">재활용 면</div>
+                        <div class="patagonia-progress-subtitle">Overcoats, jackets, vests</div>
+                        <div class="patagonia-progress-subtitle">Activewear, sportswear</div>
+            </div>
+        </div>
+
+                <div class="patagonia-bottom-indicator"></div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+
+{% block script %}
+    <script>
+        // Bottom-sheet menu open/close
+        const overlay = document.getElementById('itemMenuOverlay');
+        function openItemMenu(titleText) {
+            const titleEl = document.getElementById('itemMenuTitle');
+            if (titleEl && titleText) titleEl.textContent = titleText;
+            // Reset to browser bottom
+            const sheet = overlay.querySelector('.item-menu');
+            if (sheet) sheet.style.bottom = '0px';
+            overlay.classList.add('show');
+        }
+        function closeItemMenu() {
+            overlay.classList.remove('show');
+        }
+        overlay.addEventListener('click', (e) => e.target === overlay && closeItemMenu());
+        document.querySelectorAll('.more-options').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const item = e.currentTarget.closest('.related-item');
+                const name = item?.querySelector('.related-name')?.textContent?.trim();
+                openItemMenu(name || '항목 메뉴');
+            });
+        });
+
+        // Item menu button handlers
+        const menuButtons = document.querySelectorAll('.item-menu .list button');
+        if (menuButtons.length >= 3) {
+            // First button: Patagonia Inc. Modal
+            menuButtons[0].addEventListener('click', () => {
+                closeItemMenu();
+                openPatagoniaModal();
+            });
+
+            // Second button: Brand website
+            menuButtons[1].addEventListener('click', () => {
+                closeItemMenu();
+                // Navigate to brand website
+                window.location.href = '/brand-website';
+            });
+
+            // Third button: Recommendation basis with vector DB highlights
+            menuButtons[2].addEventListener('click', () => {
+                closeItemMenu();
+                // Navigate to recommendation basis page
+                window.location.href = '/recommendation-basis';
+            });
+        }
+
+        // Back button handler
+        document.querySelector('.back-btn').addEventListener('click', () => {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                alert('이전 페이지로 돌아갑니다.');
+            }
+        });
+
+
+        // Heart button toggle
+        const heartBtn = document.querySelector('.heart-btn');
+        heartBtn.addEventListener('click', function() {
+            fetch("{% url "apiapp:like_api" look.id %}")
+                .then(resp => resp.json())
+                .then(json => {
+                    let like = json["like"];
+                    const isFilled = this.classList.toggle('filled', like);
+                    this.setAttribute('aria-pressed', isFilled.toString());
+                });
+        });
+
+        // Textile Exchange Modal functions
+        function openTextileModal() {
+            const modal = document.getElementById('textileModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 백그라운드 스크롤 방지
+        }
+
+        function closeTextileModal(event) {
+            // 모달 컨테이너 내부 클릭 시에는 닫지 않음
+            if (event && event.target !== event.currentTarget) return;
+
+            const modal = document.getElementById('textileModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // 백그라운드 스크롤 복원
+        }
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeTextileModal();
+                closePatagoniaModal();
+            }
+        });
+
+        // Patagonia Inc. Modal functions
+        function openPatagoniaModal() {
+            const modal = document.getElementById('patagoniaModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 백그라운드 스크롤 방지
+        }
+
+        function closePatagoniaModal(event) {
+            // 모달 컨테이너 내부 클릭 시에는 닫지 않음
+            if (event && event.target !== event.currentTarget) return;
+
+            const modal = document.getElementById('patagoniaModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // 백그라운드 스크롤 복원
+        }
+    </script>
+{% endblock script %}
