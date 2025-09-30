@@ -1,0 +1,22 @@
+trl>=0.23.0
+runpod
+
+
+torch==2.5.1
+torchaudio==2.5.1
+--extra-index-url https://download.pytorch.org/whl/cu121
+librosa
+
+numpy==1.26.4
+accelerate
+
+safetensors
+huggingface_hub
+transformers
+inflect
+kanjize
+phonemizer
+sudachipy
+sudachidict_full
+pydub
+soundfile   
