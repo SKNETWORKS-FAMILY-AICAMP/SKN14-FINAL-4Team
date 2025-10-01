@@ -110,12 +110,14 @@ LLM 활용 인공지능 인플루언서 만들기
 &nbsp;&nbsp;&nbsp;
 ![](https://img.shields.io/badge/OpenAI-10a37f?style=for-the-badge&amp;logo=openai&amp;logoColor=white)
 ![](https://img.shields.io/badge/elevenlabs-000000?style=for-the-badge&amp;logo=elevenlabs&amp;logoColor=white)
+![](https://img.shields.io/badge/runpod-5d29f0?style=for-the-badge&amp;logoColor=white)
 
 - Infrastructure  
 ![](https://img.shields.io/badge/AWS-Elastic--beanstalk-ff9900?style=for-the-badge&amp;logo=aws&amp;logoColor=white)
 ![](https://img.shields.io/badge/Certificate--manager-ff9900?style=for-the-badge&amp;logo=aws&amp;logoColor=white)
 ![](https://img.shields.io/badge/route53-ff9900?style=for-the-badge&amp;logo=aws&amp;logoColor=white)
 ![](https://img.shields.io/badge/RDS-ff9900?style=for-the-badge&amp;logo=aws&amp;logoColor=white)
+![](https://img.shields.io/badge/s3-ff9900?style=for-the-badge&amp;logo=aws&amp;logoColor=white)
 
 - DevOps  
 ![](https://img.shields.io/badge/github--action-F05032?style=for-the-badge&amp;logo=git&amp;logoColor=white)
