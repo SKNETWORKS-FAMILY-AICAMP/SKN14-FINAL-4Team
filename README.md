@@ -1,7 +1,4 @@
-<p align="center"><img src="https://elasticbeanstalk-ap-northeast-2-967883357924.s3.ap-northeast-2.amazonaws.com/static/images/logo_big.png" alt="project-image"></p>
- 
-> [SKN14-Final-4Team-Web(Frontend Git Repo)](https://github.com/skn-ai14-250409/SKN14-Final-4Team-Web)
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+> [SKN14-Final-4Team-Web(Frontend Git Repo)](https://github.com/skn-ai14-250409/SKN14-Final-4Team-Web) <br/>
 > [SKN14-Final-4Team-AI(Backend Git Repo)](https://github.com/skn-ai14-250409/SKN14-Final-4Team-AI)
 
 ------------------------------------------------------------------------------------------------------------------------
